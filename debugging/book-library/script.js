@@ -71,11 +71,12 @@ function render() {
     changeBut.className = "btn btn-success";
     wasReadCell.appendChild(changeBut);
     let readStatus = "";
-    if (myLibrary[i].check == true) {
+    if (myLibrary[i].check ) {
       readStatus = "Yes";
     } else {
       readStatus = "No";
     }
+    // myLibrary[i].check ? readStatus = "Yes" : readStatus = "No";
 
     changeBut.innerText = readStatus;
 
