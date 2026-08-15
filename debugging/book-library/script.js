@@ -29,19 +29,19 @@ const check = document.getElementById("check");
 //via Book function and start render function
 function submit() {
   if (
-    title.value == null ||
     title.value == "" ||
-    pages.value == null ||
+    author.value == "" ||
     pages.value == ""
   ) {
     alert("Please fill all fields!");
-    return false;
-  } else {
-    let book = new Book(title.value, title.value, pages.value, check.checked);
-    library.push(book);
-    render();
+    return;
   }
+
+  let book = new Book(title.value, author.value, pages.value, check.checked);
+  myLibrary.push(book);
+  render();
 }
+
 
 function Book(title, author, pages, check) {
   this.title = title;
