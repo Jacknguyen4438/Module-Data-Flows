@@ -5,6 +5,13 @@ const authorInput = document.getElementById("author");
 const pagesInput = document.getElementById("pages");
 const readCheckbox = document.getElementById("check");
 
+const bookForm = document.getElementById("book-form");
+
+bookForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  submit();
+});
+
 window.addEventListener("load", function () {
   populateStorage();
 });
@@ -102,8 +109,9 @@ function render() {
 
       myLibrary.splice(i, 1);
       render();
-
-      alert(`Deleted: ${deletedTitle}`);
+      setTimeout(function () {
+        alert(`Deleted: ${deletedTitle}`);
+      }, 0);
     });
 
     deleteCell.appendChild(deleteButton);
