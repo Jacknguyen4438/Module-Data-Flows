@@ -1,5 +1,10 @@
 const myLibrary = [];
 
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const readCheckbox = document.getElementById("check");
+
 window.addEventListener("load", function () {
   populateStorage();
 });
@@ -21,11 +26,6 @@ function populateStorage() {
     render();
   }
 }
-
-const titleInput = document.getElementById("title");
-const authorInput = document.getElementById("author");
-const pagesInput = document.getElementById("pages");
-const readCheckbox = document.getElementById("check");
 
 function submit() {
   const titleValue = titleInput.value.trim();
@@ -62,16 +62,11 @@ function Book(title, author, pages, check) {
 }
 
 function render() {
-  const table = document.getElementById("display");
-
-  const rowsNumber = table.rows.length;
-
-  for (let n = rowsNumber - 1; n > 0; n--) {
-    table.deleteRow(n);
-  }
+  const tableBody = document.getElementById("book-list");
+  tableBody.innerHTML = "";
 
   for (let i = 0; i < myLibrary.length; i++) {
-    const row = table.insertRow(1);
+    const row = tableBody.insertRow();
 
     const titleCell = row.insertCell(0);
     const authorCell = row.insertCell(1);
