@@ -1,5 +1,4 @@
-let myLibrary = [];
-
+const myLibrary = [];
 
 window.addEventListener("load", function () {
   populateStorage();
@@ -7,12 +6,7 @@ window.addEventListener("load", function () {
 
 function populateStorage() {
   if (myLibrary.length === 0) {
-    const book1 = new Book(
-      "Robison Crusoe",
-      "Daniel Defoe",
-      252,
-      true
-    );
+    const book1 = new Book("Robison Crusoe", "Daniel Defoe", 252, true);
 
     const book2 = new Book(
       "The Old Man and the Sea",
@@ -41,9 +35,11 @@ function submit() {
   if (
     titleValue === "" ||
     authorValue === "" ||
-    Number.isNaN(pagesValue)
+    Number.isNaN(pagesValue) ||
+    pagesValue < 1 ||
+    !Number.isInteger(pagesValue)
   ) {
-    alert("Please fill all fields!");
+    alert("Please enter a positive whole number for pages.");
     return;
   }
 
@@ -55,7 +51,6 @@ function submit() {
   );
 
   myLibrary.push(book);
-
   render();
 }
 
@@ -108,13 +103,13 @@ function render() {
     deleteButton.textContent = "Delete";
 
     deleteButton.addEventListener("click", function () {
-  const deletedTitle = myLibrary[i].title;
+      const deletedTitle = myLibrary[i].title;
 
-  myLibrary.splice(i, 1);
-  render();
+      myLibrary.splice(i, 1);
+      render();
 
-  alert(`Deleted: ${deletedTitle}`);
-});
+      alert(`Deleted: ${deletedTitle}`);
+    });
 
     deleteCell.appendChild(deleteButton);
   }
